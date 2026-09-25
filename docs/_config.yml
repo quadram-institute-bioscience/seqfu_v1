@@ -7,7 +7,6 @@ baseurl: "/seqfu2"
 url: "https://telatin.github.io"
 
 # Theme configuration
-theme: just-the-docs
 remote_theme: just-the-docs/just-the-docs
 
 # Color scheme
