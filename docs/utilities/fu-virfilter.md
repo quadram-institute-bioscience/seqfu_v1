@@ -1,0 +1,59 @@
+---
+layout: default
+title: fu-virfilter
+parent: Utilities
+---
+
+
+# fu-virfilter
+
+Filter sequences from VirFinder predictions CSV file.
+
+```text
+
+  Usage: fu-virfilter [options] <virfinder> <fasta>
+
+  Files:
+    <virfinder>                VirFinder output file (csv format)
+    <fasta-file>               FASTA file to filter
+
+  Options:
+    -p, --max-pvalue FLOAT     Maximum p-value to keep [default: 0.05]
+    -s, --min-score FLOAT      Minimum score [default: 0.90]
+    --min-len INT              Minimum length [default: 100]
+    --max-len INT              Maximum length [default: 1000000]
+
+  Other options:
+    --sep CHAR                 Separator [default: ,]
+    -v, --verbose              Verbose output
+    -h, --help                 Show this help
+```
+
+
+## Example input and output
+
+Virfinder output:
+
+```
+"","name","length","score","pvalue"
+"1","k141_48132 flag=1 multi=2.0000 len=317",317,0.805265057231112,0.003813306852036
+"2","k141_58828 flag=1 multi=1.0000 len=302",302,0.386511266211445,0.27648460774578
+"3","k141_80217 flag=1 multi=2.0000 len=310",310,0.245554967660862,0.424905660377358
+```
+
+While the FASTA file is:
+
+```
+>k141_74870 flag=1 multi=2.0000 len=369
+AAAGGCGTGTGTGCCTTGAGCCTTAGACCATGTGAATTGTAAATCAGTGTATAGCCGGCGATACCGGTTTTCTTGTTCA
+TCGCACGGCAGAAGCCTCCATCTATCACAAACAGCTTGCCATTGGCCCTGACAGGGTTCTCTCCCTCTATTGCGTGAAC
+GGTGTATGTCCATTTATGATATGCGCATCATCATCATACAGCCCGAACTCGTGCAGTATCTGACAGCAGAAGCTCTTAT
+CGTAATACCTGCTGTAATATGGGTTAGAAGGCTCTTCCCACATGCTCTTGTCTGTAACATATTCCATCTCAAAGGTCTT
+AAGCCTTCTGCCGCACAGCGGTGATTTTTCTCCTCCCCACAAAAACCACATA
+>k141_106952 flag=1 multi=2.0000 len=384
+GCGGGCGTTACCCCGGAAGCGGCATGGAGGGCCTGGGAGAAACCGTCCCACAGGCTGCGGCTGCAGCGGCAGTCCGCGA
+GGGAGACCGGATACCAGCGGACCAGGGGGTCGGCCGCGACGCGCCGCCCGGTCCCGCCGGTGAGGATGCGCAGCCCCCC
+GGATTCTGCGGGCAGGCGGACCTCCAGATCTTCCGTGACCGGGGTCTGACAGGCCAGGACCGAGACCCATTCCTCCCCG
+CGGCGGAGCGCCACACGGCACTTTCCGCAGGTCCCATTCCCGCCGCAGGGGCTGTCCAGCCAGAGACCGGCCGCACGGC
+AGGCCTCCATCAGCGTGCTTCCCAGGGGGACGGAGCAGCGCACGTCCGCCGGGAGAAAGCGTACCTGT
+```

@@ -1,12 +1,12 @@
-<a href="https://telatin.github.io/seqfu2" description="SeqFu documentation">
+<a href="https://quadram-institute-bioscience.github.io/seqfu_v1" description="SeqFu documentation">
 <img align="right" width="128" height="128" src="docs/img/seqfu-512.png"></a>
 
 # SeqFu
 
-[![Seqfu-Make-Build](https://github.com/telatin/seqfu2/actions/workflows/make.yaml/badge.svg)](https://github.com/telatin/seqfu2/actions/workflows/make.yaml)
-![Last Commit](https://img.shields.io/github/last-commit/telatin/seqfu2)
+[![Seqfu-Make-Build](https://github.com/quadram-institute-bioscience/seqfu_v1/actions/workflows/make.yaml/badge.svg)](https://github.com/telatin/seqfu2/actions/workflows/make.yaml)
+![Last Commit](https://img.shields.io/github/last-commit/quadram-institute-bioscience/seqfu_v1)
 [![Downloads](https://img.shields.io/conda/dn/bioconda/seqfu)](https://bioconda.github.io/recipes/seqfu/README.html)
-[![Latest release](https://img.shields.io/github/v/release/telatin/seqfu2)](https://github.com/telatin/seqfu2/releases)
+[![Latest release](https://img.shields.io/github/v/release/quadram-institute-bioscience/seqfu_v1)](https://github.com/quadram-institute-bioscience/seqfu_v1/releases)
 
 A general-purpose program to manipulate and parse information from FASTA/FASTQ files,
 supporting gzipped input files.
@@ -20,7 +20,7 @@ sequences and to *count* and print *statistics* on sequence lengths.
 Seqfu can be easily installed via Miniconda:
 
 ```bash
-conda install -y -c conda-forge -c bioconda "seqfu>1.10"
+conda install -y -c conda-forge -c bioconda "seqfu>1.28"
 ```
 
 ### Build from source

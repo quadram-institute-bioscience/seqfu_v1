@@ -1,0 +1,32 @@
+{% set name = "seqfu" %}
+{% set version = "0.8" %}
+{% set sha256hash = "" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  - url: https://github.com/telatin/porfast/archive/v{{ version }}.tar.gz
+    sha256: {{ sha256hash }}
+ 
+build:
+  number: 1
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - nim
+  host:
+    - zlib
+    
+test:
+  commands:
+    - seqfu --help
+    - seqfu stats --help
+    - ./bin/seqfu  --version | grep "version: {{ version }}"
+
+about:
+  home: https://github.com/telatin/seqfu2
+  license: MIT
+  summary: 'Suite of utilities to manipulate FASTA/FASTQ files.'
