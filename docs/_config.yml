@@ -3,8 +3,8 @@
 # Site settings
 title: SeqFu Documentation
 description: A general-purpose toolkit to manipulate and parse FASTA/FASTQ files
-baseurl: "/seqfu2"
-url: "https://telatin.github.io"
+baseurl: "/seqfu_v1"
+url: "https://quadram-institute-bioscience.github.io"
 
 # Theme configuration
 remote_theme: just-the-docs/just-the-docs
@@ -36,15 +36,15 @@ heading_anchors: true
 # Aux links for the upper right navigation
 aux_links:
   "GitHub Repository":
-    - "https://github.com/telatin/seqfu2"
+    - "https://github.com/quadram-institute-bioscience/seqfu_v1"
   "Report Issue":
-    - "https://github.com/telatin/seqfu2/issues"
+    - "https://github.com/quadram-institute-bioscience/seqfu_v1/issues"
 
 # Makes Aux links open in a new tab
 aux_links_new_tab: true
 
 # Footer
-footer_content: "Copyright &copy; 2019-2025 Andrea Telatin. Distributed by an <a href=\"https://github.com/telatin/seqfu2/blob/main/LICENSE\">MIT license</a>."
+footer_content: "Copyright &copy; 2019-2025 Andrea Telatin. Distributed by an <a href=\"https://github.com/quadram-institute-bioscience/seqfu_v1/blob/main/LICENSE\">MIT license</a>."
 
 # Back to top link
 back_to_top: true
@@ -88,7 +88,7 @@ sass:
   style: compressed
 
 # Repository information (for GitHub metadata)
-repository: telatin/seqfu2
+repository: quadram-institute-bioscience/seqfu_v1
 
 # GA tracking (optional - uncomment and add your tracking ID if needed)
 # ga_tracking: UA-XXXXXXXXX-X
