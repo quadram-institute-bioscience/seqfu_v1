@@ -14,8 +14,8 @@ which is supported from both **Linux** and **macOS**.
 If you have _conda_ installed ([how to install it](https://docs.conda.io/en/latest/miniconda.html)):
 
 ```bash
-# Ensure a recent version will be installed: 0.x is a very old and unsupported tool
-conda install -c conda-forge -c bioconda "seqfu>1.10"
+# Install the latest 1.x release (this repository tracks the 1.x stable branch)
+conda install -c conda-forge -c bioconda "seqfu>=1.10,<2.0"
 ```
 
 More info on [installing conda](https://telatin.github.io/microbiome-bioinformatics/Install-Miniconda/).
@@ -25,7 +25,7 @@ but we cannot provide support for this platform at the moment.
 
 ## Pre-compiled binaries
 
-Pre-compiled core binaries are distributed with the [releases](https://github.com/telatin/seqfu2/releases),
+Pre-compiled core binaries are distributed with the [releases](https://github.com/quadram-institute-bioscience/seqfu_v1/releases),
 as zip files containing all the tools, labeled as "Linux" and "Darwin" as they target Linux and macOS respectively.
 When possible, we recommend to install SeqFu via Miniconda (see above),
 as it provides the full set of tools.
@@ -38,7 +38,7 @@ as it provides the full set of tools.
 (**[see instructions](https://nim-lang.org/install_unix.html)**).
 We suggest - when available - the `choosenim` method
 
-2) Clone the repository (`git clone https://github.com/telatin/seqfu2`)
+2) Clone the repository (`git clone https://github.com/quadram-institute-bioscience/seqfu_v1`)
 
 3) Compile with `nimble build`, that will download the required packages
 
