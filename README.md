@@ -1,9 +1,13 @@
 <a href="https://quadram-institute-bioscience.github.io/seqfu_v1" description="SeqFu documentation">
 <img align="right" width="128" height="128" src="docs/img/seqfu-512.png"></a>
 
-# SeqFu
+# SeqFu (1.x maintenance branch)
 
-[![Seqfu-Make-Build](https://github.com/quadram-institute-bioscience/seqfu_v1/actions/workflows/make.yaml/badge.svg)](https://github.com/telatin/seqfu2/actions/workflows/make.yaml)
+> **Note:** This is the **1.x maintenance branch** of SeqFu, hosted at
+> [quadram-institute-bioscience/seqfu_v1](https://github.com/quadram-institute-bioscience/seqfu_v1).
+> It receives bug fixes and minor updates for the stable 1.x release series.
+
+[![Seqfu-Make-Build](https://github.com/quadram-institute-bioscience/seqfu_v1/actions/workflows/make.yaml/badge.svg)](https://github.com/quadram-institute-bioscience/seqfu_v1/actions/workflows/make.yaml)
 ![Last Commit](https://img.shields.io/github/last-commit/quadram-institute-bioscience/seqfu_v1)
 [![Downloads](https://img.shields.io/conda/dn/bioconda/seqfu)](https://bioconda.github.io/recipes/seqfu/README.html)
 [![Latest release](https://img.shields.io/github/v/release/quadram-institute-bioscience/seqfu_v1)](https://github.com/quadram-institute-bioscience/seqfu_v1/releases)
@@ -40,11 +44,11 @@ sudo apt install zlib1g-dev
 # Install Nim 2.0
 curl https://nim-lang.org/choosenim/init.sh -sSf | sh
 
-# Clone this repo
-git clone https://github.com/telatin/seqfu2
+# Clone this repo (1.x branch)
+git clone https://github.com/quadram-institute-bioscience/seqfu_v1
 
 # Compile and test
-cd seqfu2
+cd seqfu_v1
 make
 make test
 
@@ -77,7 +81,7 @@ Bioengineering 2021, 8, 59. [doi.org/10.3390/bioengineering8050059](https://doi.
 ## 📙 Full documentation
 
  The full documentation is available at:
-[**telatin.github.io/seqfu2**](https://telatin.github.io/seqfu2)
+[**quadram-institute-bioscience.github.io/seqfu_v1**](https://quadram-institute-bioscience.github.io/seqfu_v1)
 
 ## Splash screen
 
