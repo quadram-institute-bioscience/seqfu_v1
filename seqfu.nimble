@@ -1,12 +1,12 @@
 # Package
-version       = "1.29.1"
+version       = "1.30.0"
 author        = "Andrea Telatin"
 description   = "SeqFu command-line tools"
 license       = "MIT"
 
 # Dependencies
 requires "nim >= 2.2.0", "regex >= 0.23", "checksums", "docopt#v0.7.1", "terminaltables",
-        "readfx >= 0.8.0",
+        "readfx >= 0.8.0", "gzfast >= 0.3.1",
         "iterutils", "argparse",  "colorize", "zip",
         "illwill#v0.2.0", "malebolgia >= 1.3.2", "tableview >= 0.3.6"
 
