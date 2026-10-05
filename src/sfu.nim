@@ -37,6 +37,7 @@ include ./fastq_amplicheck
 include ./fu_rotate
 include ./tofasta
 include ./fastx_subtract
+include ./tandust
 
 # Experimental
 include ./fastx_stats_v2
@@ -112,7 +113,8 @@ var progs = {
       "check": fqcheck,
       "amplicheck": fastq_amplicheck,
       "tofasta": tofasta,
-      "subtract": fastx_subtract
+      "subtract": fastx_subtract,
+      "tandust": tandust
 }.toTable
 
 proc main(args: var seq[string]): int =
@@ -137,7 +139,8 @@ proc main(args: var seq[string]): int =
                "shred"             : "systematically shred sequences into reads",
                "msa"               : "interactive multiple sequence alignment viewer",
                "tofasta"           : "convert multiple formats to FASTA",
-               "subtract"          : "print sequences in <file1> absent from <file2>"
+               "subtract"          : "print sequences in <file1> absent from <file2>",
+               "tandust"           : "discard reads dominated by short tandem repeats"
             }.toTable
 
     helps_last = {"cat"            : "concatenate FASTA/FASTQ files",
