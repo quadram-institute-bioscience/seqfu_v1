@@ -6,6 +6,7 @@
 > **Note:** This is the **1.x maintenance branch** of SeqFu, hosted at
 > [quadram-institute-bioscience/seqfu_v1](https://github.com/quadram-institute-bioscience/seqfu_v1).
 > It receives bug fixes and minor updates for the stable 1.x release series.
+> The future SeqFu 2 is hosted in the original repository [telatin/seqfu2](https://github.com/telatin/seqfu2/)
 
 [![Seqfu-Make-Build](https://github.com/quadram-institute-bioscience/seqfu_v1/actions/workflows/make.yaml/badge.svg)](https://github.com/quadram-institute-bioscience/seqfu_v1/actions/workflows/make.yaml)
 ![Last Commit](https://img.shields.io/github/last-commit/quadram-institute-bioscience/seqfu_v1)
