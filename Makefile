@@ -13,8 +13,8 @@ CXXFLAGS=-std=c++11 -O3
 LDLIBS=-lz
 PTHREADLIBS=-pthread
 VERSION := $(shell grep version seqfu.nimble  | grep  -o "[0-9]\\+\.[0-9]\\+\.[0-9]\\+")
-READFX_VERSION := $(shell nimble path readfx 2>/dev/null | head -n 1 | sed -E 's|.*/readfx-([^-]+)-.*|\1|')
-GZFAST_VERSION := $(shell nimble path gzfast 2>/dev/null | head -n 1 | sed -E 's|.*/gzfast-([^-]+)-.*|\1|')
+READFX_VERSION := $(shell nimble path readfx 2>/dev/null | sed -nE 's|.*/readfx-([0-9][^-]*)-.*|\1|p' | head -n 1)
+GZFAST_VERSION := $(shell nimble path gzfast 2>/dev/null | sed -nE 's|.*/gzfast-([0-9][^-]*)-.*|\1|p' | head -n 1)
 ifeq ($(READFX_VERSION),)
 READFX_VERSION := unknown
 endif
