@@ -11,12 +11,19 @@ when not defined(windows):
 
 
 const NimblePkgVersion {.strdefine.} = "<NimblePkgVersion>"
+const SeqfuReadfxVersion {.strdefine.} = "unknown"
+const SeqfuGzfastVersion {.strdefine.} = "unknown"
 
 proc version*(): string =
   if len(NimblePkgVersion) == 0:
     return "0.0.0"
   else:
     return NimblePkgVersion
+
+proc fullVersion*(): string =
+  result = "seqfu\t" & version() & "\n" &
+           "readfx\t" & SeqfuReadfxVersion & "\n" &
+           "gzfast\t" & SeqfuGzfastVersion
 
 type
   fileNameStrand* = tuple

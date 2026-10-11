@@ -154,9 +154,16 @@ proc main(args: var seq[string]): int =
                   "less"           : "interactive viewer for sequences (like less)",
                }.toTable
 
-  if len(args) == 1 and (args[0] == "--version" or args[0] == "version" or args[0] == "-v"):
-    # If the first argument is either --version or version or -v, print the version
-    echo(version())
+  if len(args) >= 1 and len(args) <= 2 and
+     (args[0] == "--version" or args[0] == "version" or args[0] == "-v"):
+    # Keep the default one-line version output suitable for shell assignment.
+    if len(args) == 2 and args[1] == "--full":
+      echo(fullVersion())
+    elif len(args) == 1:
+      echo(version())
+    else:
+      stderr.writeLine("ERROR: unknown version option: ", args[1])
+      return 1
     0
   elif len(args) == 1 and (args[0] == "--cite" or args[0] == "cite" or args[0] == "--citation" or args[0] == "citation"):
     echo "SeqFu ", version()
