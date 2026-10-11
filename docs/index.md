@@ -16,11 +16,16 @@ nav_order: 1
 
 📦 See the **[repository](https://github.com/quadram-institute-bioscience/seqfu_v1)** | 💾 **[releases](https://github.com/quadram-institute-bioscience/seqfu_v1/releases)**
 
-> **Note:** This repository maintains the **1.x stable branch** of SeqFu.
-> Active development of SeqFu 2.0 continues in the original repository at
-> [telatin/seqfu2](https://github.com/telatin/seqfu2).
-> This fork is maintained by the [Quadram Institute Bioscience](https://www.quadram.ac.uk)
-> to provide long-term support for the 1.x series.
+<div class="seqfu-branch-notice" markdown="1">
+**Stable 1.x documentation.** This website documents the stable **SeqFu 1.x**
+branch maintained in
+[quadram-institute-bioscience/seqfu_v1](https://github.com/quadram-institute-bioscience/seqfu_v1).
+Use these pages for the long-term supported 1.x command line interface, releases,
+and installation notes.
+
+Active development of **SeqFu 2.x** continues separately at
+[telatin/seqfu2](https://github.com/telatin/seqfu2).
+</div>
 
 A general-purpose program to manipulate and parse information from FASTA/FASTQ files,
 supporting gzipped input files.
