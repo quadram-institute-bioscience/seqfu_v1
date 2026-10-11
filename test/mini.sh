@@ -72,6 +72,27 @@ fi
 
 PASS=0
 ERRORS=0
+
+VERSION_LINES=$("$BIN" version | wc -l | tr -d ' ')
+if [[ "$VERSION_LINES" == "1" ]]; then
+  echo -e "$OK: Version prints one line"
+  PASS=$((PASS+1))
+else
+  echo -e "$FAIL: Version printed $VERSION_LINES lines"
+  ERRORS=$((ERRORS+1))
+fi
+
+FULL_VERSION=$("$BIN" version --full)
+if grep -q '^seqfu[[:space:]]' <<< "$FULL_VERSION" &&
+   grep -q '^readfx[[:space:]]' <<< "$FULL_VERSION" &&
+   grep -q '^gzfast[[:space:]]' <<< "$FULL_VERSION"; then
+  echo -e "$OK: Full version reports dependencies"
+  PASS=$((PASS+1))
+else
+  echo -e "$FAIL: Full version missing dependency details"
+  ERRORS=$((ERRORS+1))
+fi
+
 # Dereiplicate
 if [[ $("$BIN" derep "$iAmpli"  | grep -c '>') -eq "18664" ]]; then
 	echo -e "$OK: Dereplicate"
