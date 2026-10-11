@@ -13,7 +13,15 @@ CXXFLAGS=-std=c++11 -O3
 LDLIBS=-lz
 PTHREADLIBS=-pthread
 VERSION := $(shell grep version seqfu.nimble  | grep  -o "[0-9]\\+\.[0-9]\\+\.[0-9]\\+")
-NIMPARAM :=  --mm:orc -d:NimblePkgVersion=$(VERSION) -d:release --opt:speed --passC:"-Wno-error=incompatible-pointer-types"
+READFX_VERSION := $(shell nimble path readfx 2>/dev/null | head -n 1 | sed -E 's|.*/readfx-([^-]+)-.*|\1|')
+GZFAST_VERSION := $(shell nimble path gzfast 2>/dev/null | head -n 1 | sed -E 's|.*/gzfast-([^-]+)-.*|\1|')
+ifeq ($(READFX_VERSION),)
+READFX_VERSION := unknown
+endif
+ifeq ($(GZFAST_VERSION),)
+GZFAST_VERSION := unknown
+endif
+NIMPARAM :=  --mm:orc -d:NimblePkgVersion=$(VERSION) -d:SeqfuReadfxVersion=$(READFX_VERSION) -d:SeqfuGzfastVersion=$(GZFAST_VERSION) -d:release --opt:speed --passC:"-Wno-error=incompatible-pointer-types"
 TARGETS=$(BIN)/seqfu $(BIN)/fu-msa $(BIN)/fu-primers $(BIN)/dadaist2-mergeseqs $(BIN)/fu-shred $(BIN)/fu-homocomp $(BIN)/fu-multirelabel $(BIN)/fu-index $(BIN)/fu-cov $(BIN)/fu-16Sregion  $(BIN)/fu-nanotags  $(BIN)/fu-orf  $(BIN)/fu-sw  $(BIN)/fu-virfilter  $(BIN)/fu-tabcheck $(BIN)/byteshift $(BIN)/SeqCountHelper $(BIN)/fu-secheck
 PYTARGETS=$(BIN)/fu-split $(BIN)/fu-pecheck $(BIN)/fu-readtope
 
