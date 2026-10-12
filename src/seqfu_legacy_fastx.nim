@@ -17,15 +17,16 @@ type
     eof: bool
 
 proc seqfuStreamReadData(s: Stream; buffer: pointer; bufLen: int): int
-    {.nimcall, tags: [RootEffect], raises: [IOError].} =
+    {.nimcall, gcsafe, tags: [ReadIOEffect], raises: [IOError].} =
   let stream = SeqfuGzStream(s)
   if stream.closed:
     raise newException(IOError, "input stream is closed")
   var tmp = newString(bufLen)
   let n =
     try:
-      fxio.read(stream.handle, tmp, bufLen)
-    except CatchableError as e:
+      {.cast(tags: [ReadIOEffect]).}:
+        fxio.read(stream.handle, tmp, bufLen)
+    except Exception as e:
       raise newException(IOError, e.msg)
   if n < 0:
     raise newException(IOError, "error reading input stream")
@@ -35,64 +36,75 @@ proc seqfuStreamReadData(s: Stream; buffer: pointer; bufLen: int): int
     stream.eof = true
   result = n
 
+proc seqfuStreamReadDataStr(s: Stream; buffer: var string; slice: Slice[int]): int
+    {.nimcall, gcsafe, tags: [ReadIOEffect], raises: [IOError].} =
+  if slice.b < slice.a:
+    return 0
+  if buffer.len <= slice.b:
+    buffer.setLen(slice.b + 1)
+  result = seqfuStreamReadData(s, addr buffer[slice.a], slice.b - slice.a + 1)
+
 proc seqfuStreamAtEnd(s: Stream): bool
-    {.nimcall, tags: [], raises: [].} =
+    {.nimcall, gcsafe, tags: [], raises: [].} =
   let stream = SeqfuGzStream(s)
   stream.eof or fxio.eof(stream.handle)
 
 proc seqfuStreamReadLine(s: Stream; line: var string): bool
-    {.nimcall, tags: [RootEffect], raises: [IOError].} =
+    {.nimcall, gcsafe, tags: [ReadIOEffect], raises: [IOError].} =
   let stream = SeqfuGzStream(s)
   if stream.closed:
     raise newException(IOError, "input stream is closed")
   try:
-    result = fxio.readLine(stream.handle, line)
-  except CatchableError as e:
+    {.cast(tags: [ReadIOEffect]).}:
+      result = fxio.readLine(stream.handle, line)
+  except Exception as e:
     raise newException(IOError, e.msg)
   if not result:
     stream.eof = true
 
 proc seqfuStreamClose(s: Stream)
-    {.nimcall, tags: [WriteIOEffect], raises: [IOError].} =
+    {.nimcall, gcsafe, tags: [WriteIOEffect], raises: [IOError].} =
   let stream = SeqfuGzStream(s)
   if not stream.closed:
     try:
-      discard fxio.close(stream.handle)
-    except CatchableError as e:
+      {.cast(tags: [WriteIOEffect]).}:
+        discard fxio.close(stream.handle)
+    except Exception as e:
       raise newException(IOError, e.msg)
     stream.closed = true
     stream.eof = true
 
 proc seqfuStreamUnsupportedSetPosition(s: Stream; pos: int)
-    {.nimcall, tags: [], raises: [IOError].} =
+    {.nimcall, gcsafe, tags: [], raises: [IOError].} =
   raise newException(IOError, "seeking is not supported")
 
 proc seqfuStreamUnsupportedGetPosition(s: Stream): int
-    {.nimcall, tags: [], raises: [IOError].} =
+    {.nimcall, gcsafe, tags: [], raises: [IOError].} =
   raise newException(IOError, "seeking is not supported")
 
 proc seqfuStreamUnsupportedPeek(s: Stream; buffer: pointer; bufLen: int): int
-    {.nimcall, tags: [ReadIOEffect], raises: [IOError].} =
+    {.nimcall, gcsafe, tags: [ReadIOEffect], raises: [IOError].} =
   raise newException(IOError, "peeking is not supported")
 
 proc seqfuStreamUnsupportedWrite(s: Stream; buffer: pointer; bufLen: int)
-    {.nimcall, tags: [WriteIOEffect], raises: [IOError].} =
+    {.nimcall, gcsafe, tags: [WriteIOEffect], raises: [IOError].} =
   raise newException(IOError, "stream is read-only")
 
 proc seqfuStreamFlush(s: Stream)
-    {.nimcall, tags: [WriteIOEffect], raises: [IOError].} =
+    {.nimcall, gcsafe, tags: [WriteIOEffect], raises: [].} =
   discard
 
 proc openSeqfuGzStream*(filename: string): Stream =
   var handle: fxio.Bufio[fxio.GzFile]
   discard fxio.open(handle, filename)
   result = SeqfuGzStream(handle: handle)
-  result.readDataImpl = cast[typeof(result.readDataImpl)](seqfuStreamReadData)
-  result.readLineImpl = cast[typeof(result.readLineImpl)](seqfuStreamReadLine)
-  result.atEndImpl = seqfuStreamAtEnd
-  result.closeImpl = cast[typeof(result.closeImpl)](seqfuStreamClose)
-  result.setPositionImpl = seqfuStreamUnsupportedSetPosition
-  result.getPositionImpl = seqfuStreamUnsupportedGetPosition
+  result.readDataImpl = seqfuStreamReadData
+  result.readDataStrImpl = seqfuStreamReadDataStr
+  result.readLineImpl = seqfuStreamReadLine
+  result.atEndImpl = cast[typeof(result.atEndImpl)](seqfuStreamAtEnd)
+  result.closeImpl = seqfuStreamClose
+  result.setPositionImpl = cast[typeof(result.setPositionImpl)](seqfuStreamUnsupportedSetPosition)
+  result.getPositionImpl = cast[typeof(result.getPositionImpl)](seqfuStreamUnsupportedGetPosition)
   result.peekDataImpl = seqfuStreamUnsupportedPeek
   result.writeDataImpl = seqfuStreamUnsupportedWrite
   result.flushImpl = seqfuStreamFlush
